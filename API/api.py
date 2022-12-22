@@ -3,7 +3,7 @@ import json
 import pytest
 import requests
 
-from settings import VALID_EMAIL, VALID_PASSWORD
+from settings import VALID_EMAIL, VALID_PASSWORD, TEAM_NAME
 
 
 class Teambook:
@@ -173,3 +173,21 @@ class Teambook:
 		res = requests.get(self.base_url + 'projects/deactivated' + '?token=' + my_token)
 		status = res.status_code
 		return status
+
+	def get_teams(self) -> json:
+		""" Index all Teams """
+		my_token = self.get_token()[0]
+		res = requests.get(self.base_url + 'teams' + '?token=' + my_token)
+		status = res.status_code
+		return status
+
+	def post_teams(self) -> json:
+		""" Create new Team """
+		my_token = self.get_token()[0]
+		data = {
+			'name': TEAM_NAME
+		}
+		res = requests.post(self.base_url + 'teams' + '?token=' + my_token, params=data)
+		status = res.status_code
+		team_id = res.json()['id']
+		return status, team_id
