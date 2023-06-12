@@ -44,7 +44,7 @@ class Teambook:
 			'business_unit': 'test bu',
 			'token': my_token
 		}
-		res = requests.post(self.base_url + 'projects', data = data)
+		res = requests.post(self.base_url + 'projects', data=data)
 		status = res.status_code
 		project_id = res.json()['id']
 		project_url = res.json()['url']
@@ -72,7 +72,7 @@ class Teambook:
 			'url': project_url,
 			'date': '2022-12-11'
 		}
-		res = requests.get(self.base_url + 'projects/projection', params = data, headers = headers)
+		res = requests.get(self.base_url + 'projects/projection', params=data, headers=headers)
 		status = res.status_code
 		return status
 	
@@ -83,7 +83,7 @@ class Teambook:
 		data = {
 			'projects_string': 'Project test from xls	PROJ123	Billable	SpaceX (ex.)	16/12/2022	22/9/2023	1000'
 		}
-		res = requests.post(self.base_url + 'projects/upload' + '?token=' + my_token, params = data)
+		res = requests.post(self.base_url + 'projects/upload' + '?token=' + my_token, params=data)
 		status = res.status_code
 		print(res.json())
 		return status
@@ -102,7 +102,7 @@ class Teambook:
 			'token': my_token,
 			'project_ids[]': project_id
 		}
-		res = requests.patch(self.base_url + 'projects/deactivate', params = data)
+		res = requests.patch(self.base_url + 'projects/deactivate', params=data)
 		status = res.status_code
 		return status
 	
@@ -113,7 +113,7 @@ class Teambook:
 			'token': my_token,
 			'project_ids[]': project_id
 		}
-		res = requests.patch(self.base_url + 'projects/activate', params = data)
+		res = requests.patch(self.base_url + 'projects/activate', params=data)
 		status = res.status_code
 		return status
 	
@@ -124,7 +124,7 @@ class Teambook:
 			'token': my_token,
 			'project_ids[]': project_id
 		}
-		res = requests.patch(self.base_url + 'projects/delete', params = data)
+		res = requests.patch(self.base_url + 'projects/delete', params=data)
 		status = res.status_code
 		return status
 	
@@ -135,7 +135,7 @@ class Teambook:
 			'token': my_token,
 			'project_ids[]': project_id
 		}
-		res = requests.post(self.base_url + 'projects/export', params = data)
+		res = requests.post(self.base_url + 'projects/export', params=data)
 		status = res.status_code
 		return status
 	
@@ -145,7 +145,7 @@ class Teambook:
 		data = {
 			'project_ids[]': project_id
 		}
-		res = requests.get(self.base_url + 'projects/in_range' + '?token=' + my_token, params = data)
+		res = requests.get(self.base_url + 'projects/in_range' + '?token=' + my_token, params=data)
 		status = res.status_code
 		project_name = res.json()[0]['name']
 		client_id = res.json()[0]['client_id']
